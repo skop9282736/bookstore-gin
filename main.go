@@ -1,8 +1,7 @@
 package main
 
 import (
-	"net/http"
-
+	controller "github.com/bookstore/controllers"
 	"github.com/bookstore/models"
 	"github.com/gin-gonic/gin"
 )
@@ -10,13 +9,10 @@ import (
 func main() {
 	r := gin.Default()
 
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"data": "Book store API",
-		})
-	})
-
 	models.ConnectToDB()
+
+	r.GET("/books", controller.FindBooks)
+	r.POST("/books", controller.CreateBook)
 
 	r.Run()
 }
