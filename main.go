@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/bookstore/models"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,6 +15,8 @@ func main() {
 			"data": "Book store API",
 		})
 	})
+
+	models.ConnectToDB()
 
 	r.Run()
 }
